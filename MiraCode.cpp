@@ -112,7 +112,7 @@ void split_up_input(std::string input, std::string** words_v, int& no_w) {
 			if (!word.empty()) {
 #ifdef OLD
 				//words_v nu este alocat de ce scriu in words_v[x]
-				words_v[no_w] = new std::string[word.size()];
+				*words_v[no_w] = new std::string[word.size()];
 #else
 				//aloc un vector de n+1 stringuri
 				std::string *t = new std::string[no_w+1];
@@ -120,7 +120,7 @@ void split_up_input(std::string input, std::string** words_v, int& no_w) {
 				for (int i = 0; i < no_w; i++)
 					t[i] = (*words_v)[i];
 				//dealoc spatiul vechi
-				if( *words_v) delete[] *words_v;
+				if (*words_v) delete[]  *words_v;
 				*words_v = t;
 #endif
 				(*words_v)[no_w] = word;
